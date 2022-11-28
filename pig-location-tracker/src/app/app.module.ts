@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PigTableComponent } from './components/pig-table/pig-table.component';
 import { PigAddFormComponent } from './components/pig-add-form/pig-add-form.component';
+import { ReportMapComponent } from './components/report-map/report-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PigTableComponent,
-    PigAddFormComponent
+    PigAddFormComponent,
+    ReportMapComponent
   ],
   imports: [
     BrowserModule,

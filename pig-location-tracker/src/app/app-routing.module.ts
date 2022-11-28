@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PigAddFormComponent } from './components/pig-add-form/pig-add-form.component';
 import { PigTableComponent } from './components/pig-table/pig-table.component';
+import { ReportMapComponent } from './components/report-map/report-map.component';
 
 
 // name does not matter as long as its typed by Routes (which is an array of Route interface objects)
