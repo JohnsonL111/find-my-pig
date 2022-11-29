@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-family: monospace, Helvetica, sans-serif;
+}
+
+.border-thick {
+    border-style:solid;
+    border-width: 10px !important;
+    box-shadow: inset 0px 0px 5px 5px black;
+}

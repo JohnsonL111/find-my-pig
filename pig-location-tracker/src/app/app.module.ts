@@ -7,6 +7,7 @@ import { PigTableComponent } from './components/pig-table/pig-table.component';
 import { PigAddFormComponent } from './components/pig-add-form/pig-add-form.component';
 import { ReportMapComponent } from './components/report-map/report-map.component';
 import { PigLandingPageComponent } from './components/pig-landing-page/pig-landing-page.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PigLandingPageComponent } from './components/pig-landing-page/pig-landi
     PigTableComponent,
     PigAddFormComponent,
     ReportMapComponent,
-    PigLandingPageComponent
+    PigLandingPageComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
