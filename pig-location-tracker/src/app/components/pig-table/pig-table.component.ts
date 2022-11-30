@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pig-table',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./pig-table.component.css']
 })
 export class PigTableComponent {
+  constructor(private router: Router) {
 
+  }
+
+  onClickAdd() {
+    //this.router.navigate(['/', 'add']);
+    this.router.navigateByUrl("add")
+  }
 }
