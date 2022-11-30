@@ -1,2 +1,66 @@
-<p>pig-add-form works!</p>
+<form id = "pig-info-form" name="pig-info-form" class = "flex-even m-3 text-center">
+    <h3 class = "text-bg-danger text-dark p-1"> 🐖Pig Report Form </h3>
 
+    <!-- box around the entire form-->
+    <section class = "p-5 border border-danger border-thick">
+        <!-- Reporting Person Details Section-->
+        <h6 class = "text-bg-danger p-1"> Section 1: Reporting Person Details </h6>
+        <section class = "form-group p-3">
+            <label for="person-name" class = "m-2">Name</label>
+            <input type="text" class="form-control" name="person-name" id="person-name">
+        </section>
+        <section class = "form-group p-3">
+            <label for="person-number" class = "m-2">Phone Number</label>
+            <input type="text" class="form-control" name="person-number" id="person-number">
+        </section>
+
+        <!-- Pig Info Details Section-->
+        <h6 class = "text-bg-danger p-1"> Section 2: Pig Details </h6>
+        <section class = "form-group p-3">
+            <label for="pig-breed" class = "m-2"> Breed </label>
+            <input type="text" class="form-control" name="pig-breed" id="pig-breed">
+        </section>
+        <section class = "form-group p-3">
+            <label for="pID" class = "m-2">pig ID (pID)</label>
+            <input type="text" class="form-control" name="pID" id="pID">
+        </section>
+
+        <!-- Location Info Details Section-->
+        <h6 class = "text-bg-danger p-1"> Section 3: Location </h6>
+        <section class = "form-group p-3">
+            <label for="location" class = "m-2">Location</label>
+            <input type="text" class="form-control" name="location" id="location">
+        </section>
+        <section class = "form-group p-3">
+            <label for="latitude" class = "m-2">Latitude</label>
+            <input type="text" class="form-control" name="latitude" id="latitude">
+        </section>
+        <section class = "form-group p-3">
+            <label for="longitude" class = "m-2">Longitude</label>
+            <input type="text" class="form-control" name="longitude" id="longitude">
+        </section>
+
+        <!-- Time Reported Details Section-->
+        <h6 class = "text-bg-danger p-1"> Section 4: Report Time </h6>
+        <section class = "form-group p-3">
+            <label for="date" class = "m-2">Date</label>
+            <input type="text" class="form-control" name="date" id="date">
+        </section>
+        <section class = "form-group p-3">
+            <label for="time" class = "m-2">Time</label>
+            <input type="text" class="form-control" name="time" id="time">
+        </section>
+
+        <!-- Extra Notes Section-->
+        <h6 class = "text-bg-danger p-1">Section 5 (Optional): Extra Notes </h6>
+        <section class = "form-group p-3">
+            <label for="extra-notes" class = "m-2">Notes</label>
+            <input type="text" class="form-control" name="extra-notes" id="extra-notes">
+        </section>
+
+        <!-- submit button -->
+        <button (click)="onClickFormSubmit()" type="submit" class="btn btn-outline-danger">Submit</button>
+
+    </section>
+
+</form>
