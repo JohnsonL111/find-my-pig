@@ -7,55 +7,63 @@
         <h6 class = "text-bg-danger p-1"> Section 1: Reporting Person Details </h6>
         <section class = "form-group p-3">
             <label for="person-name" class = "m-2">Name</label>
-            <input type="text" class="form-control" name="person-name" id="person-name">
+            <input placeholder="Bob" type="text" class="form-control" name="person-name" id="person-name" required>
         </section>
         <section class = "form-group p-3">
             <label for="person-number" class = "m-2">Phone Number</label>
-            <input type="text" class="form-control" name="person-number" id="person-number">
+            <!-- Validated on submission -->
+            <input placeholder="778-782-6930" type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" name="person-number" id="person-number" required>
+            <small>Format (example number): 778-782-6930</small><br>
+            <small>Validated on form submission, you have been warned.🐖</small><br>
         </section>
 
         <!-- Pig Info Details Section-->
         <h6 class = "text-bg-danger p-1"> Section 2: Pig Details </h6>
         <section class = "form-group p-3">
             <label for="pig-breed" class = "m-2"> Breed </label>
-            <input type="text" class="form-control" name="pig-breed" id="pig-breed">
+            <select name="pig-breed" id="pig-breed">
+                <option selected="selected" value="oshawott">oshawott</option>
+                <option value="tepig">tepig</option>
+                <option value="snivy">snivy</option>
+                <option value="uknown">unknown</option>
+            </select>
         </section>
         <section class = "form-group p-3">
             <label for="pID" class = "m-2">pig ID (pID)</label>
-            <input type="text" class="form-control" name="pID" id="pID">
+            <input placeholder="1" type="number" class="form-control" name="pID" id="pID" required>
         </section>
 
         <!-- Location Info Details Section-->
         <h6 class = "text-bg-danger p-1"> Section 3: Location </h6>
         <section class = "form-group p-3">
             <label for="location" class = "m-2">Location</label>
-            <input type="text" class="form-control" name="location" id="location">
+            <input type="text" class="form-control" name="location" id="location" required>
         </section>
         <section class = "form-group p-3">
             <label for="latitude" class = "m-2">Latitude</label>
-            <input type="text" class="form-control" name="latitude" id="latitude">
+            <input type="text" class="form-control" name="latitude" id="latitude" required>
         </section>
         <section class = "form-group p-3">
             <label for="longitude" class = "m-2">Longitude</label>
-            <input type="text" class="form-control" name="longitude" id="longitude">
+            <input type="text" class="form-control" name="longitude" id="longitude" required>
         </section>
 
         <!-- Time Reported Details Section-->
         <h6 class = "text-bg-danger p-1"> Section 4: Report Time </h6>
         <section class = "form-group p-3">
             <label for="date" class = "m-2">Date</label>
-            <input type="text" class="form-control" name="date" id="date">
+            <input type="date" class="form-control" name="date" id="date" required>
         </section>
         <section class = "form-group p-3">
             <label for="time" class = "m-2">Time</label>
-            <input type="text" class="form-control" name="time" id="time">
+            <input type="time" class="form-control" name="time" id="time" required>
         </section>
 
         <!-- Extra Notes Section-->
         <h6 class = "text-bg-danger p-1">Section 5 (Optional): Extra Notes </h6>
         <section class = "form-group p-3">
             <label for="extra-notes" class = "m-2">Notes</label>
-            <input type="text" class="form-control" name="extra-notes" id="extra-notes">
+            <textarea  placeholder = "This pig was eating another pig (true story)😲..." class="form-control" rows="4" cols="50" name="extra-notes" id="extra-notes"></textarea>
         </section>
 
         <!-- submit button -->
