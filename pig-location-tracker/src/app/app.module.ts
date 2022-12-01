@@ -24,7 +24,7 @@ import { ButtonsComponent } from './components/buttons/buttons.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [], // likely empty, since I'm registering all services via providedIn
   bootstrap: [AppComponent]
 })
 export class AppModule { }

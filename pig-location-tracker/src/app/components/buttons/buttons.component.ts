@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./buttons.component.css']
 })
 export class ButtonsComponent {
-  constructor(private router: Router) {}
+  constructor(private _router: Router) {}
   
   onClickAdd() {
     //this.router.navigate(['/', 'add']);
-    this.router.navigateByUrl("add")
+    this._router.navigateByUrl("add")
   }
 }

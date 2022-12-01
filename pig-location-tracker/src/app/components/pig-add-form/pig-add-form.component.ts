@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,12 +6,19 @@ import { Router } from '@angular/router';
   templateUrl: './pig-add-form.component.html',
   styleUrls: ['./pig-add-form.component.css']
 })
-export class PigAddFormComponent {
+export class PigAddFormComponent implements OnInit{
   // router service is injected
-  constructor(private router: Router) {}
+  constructor(private _router: Router) {}
 
-  onClickFormSubmit() {
-    // do any input validation here
-    this.router.navigateByUrl("")
+  ngOnInit(): void {
+    (<HTMLInputElement>document.getElementById("date")).value = new Date().toLocaleDateString();
+    (<HTMLInputElement>document.getElementById("time")).value = new Date().toLocaleTimeString(
+      [], {hour: '2-digit', minute: '2-digit'});
   }
+
+  onClickFormSubmit(evt: Event) {
+    // do any input validation here
+    this._router.navigateByUrl("")
+  }
+
 }
