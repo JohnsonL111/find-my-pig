@@ -11,7 +11,6 @@ import { PigLandingPageComponent } from './components/pig-landing-page/pig-landi
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,12 +19,12 @@ import { ButtonsComponent } from './components/buttons/buttons.component';
     ReportMapComponent,
     PigLandingPageComponent,
     HeaderComponent,
-    ButtonsComponent
+    ButtonsComponent,
   ],
   imports: [
     BrowserModule, // for interacting with DOM
     AppRoutingModule, // for angular routing
-    HttpClientModule // for using http as the communication method to consume APIs 
+    HttpClientModule, // for using http as the communication method to consume APIs 
   ],
   providers: [], // likely empty, since I'm registering all services via providedIn
   bootstrap: [AppComponent]

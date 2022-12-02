@@ -6,7 +6,7 @@ import { pig } from '../pig';
   providedIn: 'root' // registers this service at the root module injector.
 })
 export class PigsService {
-  pigs: pig[] = [];
+  pigs: any[] = [];
 
   constructor(private _http: HttpClient) { 
     // creats the pigs collection if not exist then updates the internal list

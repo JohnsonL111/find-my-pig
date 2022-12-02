@@ -1,6 +1,6 @@
 // defines interface used by the pig service (which is injected into our add form and table component)
 export interface pig {
-    id?: number; // uniquely identifies a pig
+    id?: number; // uniquely identifies a pig (not the same as the pigID that the user enters)
     personName: string;
     personNumber: string;
     pigBreed: string;
