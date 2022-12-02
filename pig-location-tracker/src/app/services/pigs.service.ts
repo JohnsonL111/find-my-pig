@@ -6,12 +6,13 @@ import { pig } from '../pig';
   providedIn: 'root' // registers this service at the root module injector.
 })
 export class PigsService {
-  pigs: any[] = [];
+  pigs: any;
 
   constructor(private _http: HttpClient) { 
     // creats the pigs collection if not exist then updates the internal list
     // services cannot have ngOnInit lifecycle hook so do this in the constructor
     console.log("pig service constructor");
+    this.pigs = []
   }
 
   // populates the internal list in the service through the server
@@ -22,6 +23,6 @@ export class PigsService {
       this.pigs = data;
     });
 
-    return this.pigs;
+    return this.pigs
   }
 }

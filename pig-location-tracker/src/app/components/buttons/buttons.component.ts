@@ -10,7 +10,7 @@ export class ButtonsComponent {
   constructor(private _router: Router) {}
   
   onClickAdd() {
-    //this.router.navigate(['/', 'add']);
-    this._router.navigateByUrl("add")
+    //this.router.navigate(['/', 'add']); // another way to do page nav
+    this._router.navigateByUrl("add", { state: {legalNav : "true"}});
   }
 }

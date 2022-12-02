@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
 })
 export class PigAddFormComponent implements OnInit{
   // router service and HttpClient is injected here
-  constructor(private _router: Router, private _http: HttpClient) {}
+  constructor(private _router: Router, private _http: HttpClient) {
+    // if the user accesses this URL not through the "add button" on the main page then redirect them.
+    if (this._router.getCurrentNavigation()?.extras.state?.['legalNav'] == null) _router.navigateByUrl("")
+  }
 
   ngOnInit(): void {
     // preload date and time (unchangable)

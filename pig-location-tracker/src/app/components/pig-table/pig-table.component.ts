@@ -8,7 +8,7 @@ import { PigsService } from 'src/app/services/pigs.service';
   styleUrls: ['./pig-table.component.css']
 })
 export class PigTableComponent implements OnInit {
-  pigs: pig[];
+  pigs: any[];
   payload: any;
 
   // inject the pig service here
@@ -19,12 +19,11 @@ export class PigTableComponent implements OnInit {
 
   // log the pigs from the service
   ngOnInit(): void {
-    this.payload  = this._pigsService.getPigs(); // the entire request payload
-    console.log(JSON.stringify(this.pigs));
+    this.payload = this._pigsService.getPigs(); // the entire request payload
 
     // populate pigs with just the pig data
     this.payload.forEach((item: any) => { 
-      console.log(item.data)
+      this.pigs.push(item.data)
     });
   }
 }

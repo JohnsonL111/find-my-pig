@@ -11,11 +11,11 @@
     <tbody id = "table-data ">
         
         <tr *ngFor="let pig of pigs; let i = index">
-            <td>index: {{i}}{{pig}}</td>
-            <td>{{pig}}</td>
-            <td>{{pig}}</td>
-            <td>{{pig}}</td>
-            <td>{{pig}}</td>
+            <td>{{i}}</td>
+            <td>{{pig.location}}</td>
+            <td>{{pig.personName}}</td>
+            <td>{{pig.dateReported}} ({{pig.timeReported}})</td>
+            <td> READY FOR PICKUP</td>
         </tr> 
     </tbody>
 </table>
