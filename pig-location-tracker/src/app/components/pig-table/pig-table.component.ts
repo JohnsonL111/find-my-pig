@@ -8,15 +8,13 @@ import { PigsService } from 'src/app/services/pigs.service';
   styleUrls: ['./pig-table.component.css']
 })
 export class PigTableComponent implements OnInit {
-  // internal recording of pigs
-  public pigs: pig[] = [];
-
+  pigs: pig[] = [];
   // inject the pig service here
-  constructor(private _pigsService: PigsService) {}
+  constructor(private _pigsService: PigsService) {
+  }
 
-  // populate the internal pigs list 
+  // log the pigs from the service
   ngOnInit(): void {
     this.pigs = this._pigsService.getPigs();
-    console.log(this.pigs)
   }
 }

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { pig } from '../pig';
 
@@ -5,24 +6,22 @@ import { pig } from '../pig';
   providedIn: 'root' // registers this service at the root module injector.
 })
 export class PigsService {
-  pigs: pig[] = [
-    {
-      personName : "bob",
-      personNumber: "123",
-      pigBreed: "bob",
-      pigID: "123",
-      location: "bobby",
-      latitude: "-123",
-      longitude: "-456",
-      dateReported: "12312312",
-      timeReported: "123123",
-      extraNotes: "notes here"
-    }
-  ]
+  pigs: pig[] = [];
 
-  constructor() { }
+  constructor(private _http: HttpClient) { 
+    // creats the pigs collection if not exist then updates the internal list
+    // services cannot have ngOnInit lifecycle hook so do this in the constructor
+    console.log("pig service constructor");
+  }
 
+  // populates the internal list in the service through the server
   getPigs() {
+    console.log("get pig called")
+    this._http.get<Object>('https://272.selfip.net/apps/IebSX7E91f/collections/pigs/documents/')
+    .subscribe((data: any)=>{
+      this.pigs = data;
+    });
+
     return this.pigs;
   }
 }

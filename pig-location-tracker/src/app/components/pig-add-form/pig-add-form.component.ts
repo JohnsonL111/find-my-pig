@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,10 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./pig-add-form.component.css']
 })
 export class PigAddFormComponent implements OnInit{
-  // router service is injected
-  constructor(private _router: Router) {}
+  // router service and HttpClient is injected here
+  constructor(private _router: Router, private _http: HttpClient) {}
 
   ngOnInit(): void {
+    // preload date and time (unchangable)
     (<HTMLInputElement>document.getElementById("date")).value = new Date().toLocaleDateString();
     (<HTMLInputElement>document.getElementById("time")).value = new Date().toLocaleTimeString(
       [], {hour: '2-digit', minute: '2-digit'});
