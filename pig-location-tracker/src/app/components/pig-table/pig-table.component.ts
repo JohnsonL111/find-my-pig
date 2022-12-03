@@ -52,6 +52,10 @@ export class PigTableComponent implements OnInit {
         idx = prompt("Please enter the pigs index");
       } while (this.isInvalidIdx(idx));
 
+      // terminate if user clicks cancel (strict null return) or no input
+      // without this guard it will treat the empty return as idx = 0.
+      if (idx === null || idx === "") return;
+
       let idxNum = Number(idx);
       this._pigsService.deletePig(this.payload[idxNum].key).subscribe((data: any) => {
         location.reload();
@@ -66,6 +70,10 @@ export class PigTableComponent implements OnInit {
         idx = prompt("Please enter the pigs index");
       } while (this.isInvalidIdx(idx));
 
+      // terminate if user clicks cancel (strict null return) or no input
+      // without this guard it will treat the empty return as idx = 0.
+      if (idx === null || idx === "") return;
+
       let idxNum = Number(idx);
       this.pigs[idxNum].retrieved = "RETRIEVED"
       this._pigsService.putPig(this.payload[idxNum].key, this.pigs[idxNum]).subscribe((data: any) => {
@@ -76,12 +84,11 @@ export class PigTableComponent implements OnInit {
   // used for if the user wants to update the status or delete a pig
   promptPassword(): boolean {
     let pw = prompt("Please enter the password");
-    if (pw == "OINK!!") {
-      return true;
-    } else {
-      alert("incorrect password");
-      return false;
-   }
+    if (pw == "OINK!!") return true  // right password
+    else if (pw === null) return false; // user clicked cancel
+    else alert("incorrect password"); // wrong password
+
+    return false;
   }
 
   isInvalidIdx(idx: string | null): boolean {

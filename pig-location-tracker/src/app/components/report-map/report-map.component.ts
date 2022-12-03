@@ -25,9 +25,14 @@ Marker.prototype.options.icon = iconDefault;
 })
 export class ReportMapComponent implements AfterViewInit{
   title = 'pig-location-tracker';
+  pigs: any[];
+  payload: any;
   private map!: L.Map;
   
-  constructor() {}
+  constructor() {
+    this.pigs = [];
+    this.payload = [];
+  }
 
   ngAfterViewInit(): void {
       // sets view to the lower mainland [longitude, latitude]
@@ -41,6 +46,7 @@ export class ReportMapComponent implements AfterViewInit{
       tileSize: 512,
       zoomOffset: -1
       }).addTo(this.map);
+
 
       // adds two markers to the map (metrotown and SFU surrey)
       L.marker([49.2276, -123.0076]).addTo(this.map)
