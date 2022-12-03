@@ -47,16 +47,15 @@
         <h6 class = "text-bg-danger p-1"> Section 3: Location </h6>
         <section class = "form-group p-3">
 
-            <button (click) = "toggleAddOwnLocation($event)" id = "toggle-own-location" class = "btn btn-outline-danger align-self-center">Add existing location</button> 
+            <button (click) = "toggleAddOwnLocation($event)" id = "toggle-own-location" class = "btn btn-outline-danger align-self-center">Add new location</button> 
             <br>
             <section id = "select-existing-locations-section">
                 <label for="location-options" class = "m-2"> Select from existing locations </label><br>
-                <select name="location-options" id="location-options"> 
-                    <!-- load the location options here. If an option is selected its location and coordinates populate the input -->
-                    <option selected = "selected" value = "none"> None </option>
+                <select (change)="populateLocationData()" name="location-options" id="location-options"> 
+
                 </select><br>
             </section>
-            <small id = "location-hint"> 🐖 Add your own locations below </small><br>
+            <small id = "location-hint"> 🐖 Add your own location below </small><br>
             
             <label for="location" class = "m-2">Location*</label>
             <input type="text" class="form-control" name="location" id="location" required>

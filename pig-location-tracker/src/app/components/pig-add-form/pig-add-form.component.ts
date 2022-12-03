@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PigsService } from 'src/app/services/pigs.service';
 
@@ -11,14 +10,17 @@ import { PigsService } from 'src/app/services/pigs.service';
 })
 export class PigAddFormComponent implements OnInit{
   submitStatus: string;
+  pigs: any[];
+  payload: any;
   // router service and HttpClient is injected here
-  constructor(private _router: Router, private _pigService: PigsService) {
+  constructor(private _router: Router, private _pigService: PigsService, private _httpClient: HttpClient) {
     // add the disabled attribute back to the submit button
     document.getElementById("submit")?.setAttribute("disabled", "disabled");
     this.submitStatus = "no";
+    this.pigs = [];
+    this.payload = [];
     // if the user accesses this URL not through the "add button" on the main page then redirect them back.
     if (this._router.getCurrentNavigation()?.extras.state?.['legalNav'] == null) _router.navigateByUrl("")
-    //console.log(this.createKey());
   }
 
   ngOnInit(): void {
@@ -28,6 +30,69 @@ export class PigAddFormComponent implements OnInit{
       [], {hour: '2-digit', minute: '2-digit'});
 
     this.changeLocationFields();
+    this.getPigs();
+  }
+
+  // updates the options for the pig select dropdown 
+  updateSelectDropDown() {
+    let locationOptionsParent = document.getElementById("location-options")
+    let index = 0;
+    this.pigs.forEach((pig) => {
+      let location = pig.location;
+      let longitude = pig.longitude;
+      let latitude = pig.latitude;
+
+      console.log(`
+      In update select dropdown method: 
+      location = ${location}
+      longitude = ${longitude}
+      latitude = ${latitude}
+      `)
+
+      // create node, add values and add to dropdown
+      const option = document.createElement("option");
+      option.value = `${index}`;
+      option.text = `${location} (${longitude}, ${latitude})`;
+      locationOptionsParent?.appendChild(option);
+      index++;
+    });
+  }
+
+  getPigs() {
+    this._pigService.getPigs()
+    .subscribe((data: any)=>{
+      this.payload = data;
+      this.extractData();
+    });
+  }
+
+  extractData() {
+    // populate pigs with just the pig data
+    this.payload.forEach((item: any) => { 
+      this.pigs.push(item.data)
+    });
+  }
+
+  populateLocationData() {
+    console.log("populating data");
+    let sel = <HTMLSelectElement>document.querySelector("#location-options");
+
+    // populate the location data with the index
+    let locationField = <HTMLInputElement>document.getElementById("location");
+    let longitudeField = <HTMLInputElement>document.getElementById("longitude");
+    let latitudeField = <HTMLInputElement>document.getElementById("latitude");
+
+    // we will use the value of the option as the index into our pigs list
+    let selVal = sel.options[sel.selectedIndex].value;
+    if (selVal == "blank") {
+      locationField.value = ""
+      longitudeField.value = ""
+      latitudeField.value = ""
+    } else {
+      locationField.value = this.pigs[Number(selVal)].location;
+      longitudeField.value = this.pigs[Number(selVal)].longitude;
+      latitudeField.value = this.pigs[Number(selVal)].latitude;
+    }
   }
 
   // toggles the "select own component" on and off
@@ -45,8 +110,6 @@ export class PigAddFormComponent implements OnInit{
     let existingLocationsField = document.getElementById("select-existing-locations-section");
     let locationHint = document.getElementById("location-hint");
 
-    console.log("in change locations method");
-    console.log(toggleOwnLocation.textContent);
     switch(toggleOwnLocation.textContent) {
       case "Add existing location":
         toggleOwnLocation.textContent = "Add new location";
@@ -55,7 +118,7 @@ export class PigAddFormComponent implements OnInit{
         latitudeField.setAttribute("disabled", "");
         existingLocationsField!.style.display = "block";
         locationHint!.textContent = "🐖Select from the dropdown"
-
+        this.updateSelectDropDown(); // reinstate all children from the select node.
         break;
       case "Add new location":
         toggleOwnLocation.textContent = "Add existing location";
@@ -63,8 +126,28 @@ export class PigAddFormComponent implements OnInit{
         longitudeField.removeAttribute("disabled");
         latitudeField.removeAttribute("disabled");
         existingLocationsField!.style.display = "none";
-        locationHint!.textContent = "🐖Add your own locations below";
+        locationHint!.textContent = "🐖Add your own location below";
+        this.deleteOptionChildren(); // delete all children from the select node.
+        this.addBlankLocationChild(); // adds a blank text option. 
         break;
+    }
+  }
+
+  addBlankLocationChild() {
+    let locationOptionsParent = <HTMLSelectElement>document.getElementById("location-options");
+    const option = document.createElement("option");
+    option.value = "blank";
+    locationOptionsParent.appendChild(option);
+  }
+
+  // deletes all the children of a node.
+  deleteOptionChildren() {
+    let locationOptionsParent = <HTMLSelectElement>document.getElementById("location-options");
+        
+    var child = locationOptionsParent.lastElementChild; 
+    while (child) {
+      locationOptionsParent.removeChild(child);
+        child = locationOptionsParent.lastElementChild;
     }
   }
 
@@ -89,7 +172,6 @@ export class PigAddFormComponent implements OnInit{
   validateForm() {
     let submitButton = document.getElementById("submit");
 
-    console.log("form has been changed")
     if (this.checkProperPhone() && this.checkRequiredFields()) {
       submitButton?.removeAttribute("disabled");
       this.submitStatus = "yes"
@@ -116,8 +198,6 @@ export class PigAddFormComponent implements OnInit{
       }
     }) 
 
-    console.log(this.createKey());
-    console.log(this.createData());
     return allHasVal;
   }
 
@@ -150,7 +230,6 @@ export class PigAddFormComponent implements OnInit{
     timeNum = timeNum.replaceAll(" ", "") // remove empty space from time
 
     let key = dateNum + timeNum;
-    console.log(`our key is ${dateNum + timeNum}`);
   
     return key;
   }
