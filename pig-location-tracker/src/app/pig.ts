@@ -9,5 +9,6 @@ export interface pig {
     longitude: string;
     dateReported: string;
     timeReported: string;
-    extraNotes?: string; 
+    extraNotes?: string;
+    isRetrieved: string; 
 }

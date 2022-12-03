@@ -18,11 +18,13 @@ export class PigsService {
   // populates the internal list in the service through the server
   getPigs() {
     console.log("get pig called")
-    this._http.get<Object>('https://272.selfip.net/apps/IebSX7E91f/collections/pigs/documents/')
-    .subscribe((data: any)=>{
-      this.pigs = data;
-    });
+    return this._http.get<Object>('https://272.selfip.net/apps/IebSX7E91f/collections/pigs/documents/');
+  }
 
-    return this.pigs
+  postPig(key: string, data: Object) {
+    return this._http.post('https://272.selfip.net/apps/IebSX7E91f/collections/pigs/documents/',
+    {"key": key, 
+    "data": data}
+    )
   }
 }

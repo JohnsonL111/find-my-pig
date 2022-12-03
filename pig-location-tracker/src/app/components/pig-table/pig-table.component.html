@@ -1,7 +1,7 @@
-<table id class="pig-table table table-bordered table-danger">
+<table id = "pig-table" class="pig-table table table-bordered table-danger">
     <thead>
         <tr>
-            <th scope="col" class = "text-bg-danger">Row #</th>
+            <th scope="col" class = "text-bg-danger">index</th>
             <th scope="col" class = "text-bg-danger">Location</th>
             <th scope="col" class = "text-bg-danger">Reported By</th>
             <th scope="col" class = "text-bg-danger">Time Reported</th>
@@ -15,12 +15,14 @@
             <td>{{pig.location}}</td>
             <td>{{pig.personName}}</td>
             <td>{{pig.dateReported}} ({{pig.timeReported}})</td>
-            <td> READY FOR PICKUP</td>
+            <td> {{pig.retrieved}}</td>
         </tr> 
     </tbody>
 </table>
 
-<!-- 
-<button (click)="getPigs()"> </button>
-<div id = "display-pigs-here"></div>
--->
+<section class = "d-flex justify-content-center m-3">
+    <button (click)="onClickAdd()" type="button" id = "add-button" class="btn btn-outline-primary m-2">🐽Eurika! I found a pig (create pig report)</button>
+    <button type="button" id = "delete-button" class="btn btn-outline-danger m-2">🐽Delete a Pig Report</button>
+    <button type="button" id = "info-button" class="btn btn-outline-info m-2">🐽Get more info about a pig's report</button>
+    <button (click)="onClickUpdate()" type="button" id = "update-button" class="btn btn-outline-dark m-2">🐽Update the status of a pig's report</button>
+</section>

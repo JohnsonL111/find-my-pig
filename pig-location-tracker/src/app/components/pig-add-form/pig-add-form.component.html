@@ -1,7 +1,6 @@
  <!-- [formGroup]="form"
 (ngSubmit)="onSubmit(form.value)" -->
-<form id = "pig-info-form" name="pig-info-form" class = "flex-even m-3 text-center"
- (ngSubmit)="onClickFormSubmit()" (change) = "validateForm()">
+<form id = "pig-info-form" name="pig-info-form" class = "flex-even m-3 text-center" (change) = "validateForm()">
     <h3 class = "text-bg-danger text-dark p-1"> 🐖Pig Report Form </h3>
     <p> 🐖 Can I submit: {{submitStatus}} </p>
     <small> Will update when you you are not focused on an input </small>
@@ -34,7 +33,7 @@
         </section>
         <section class = "form-group p-3">
             <label for="pID" class = "m-2">pig ID (pID)*</label>
-            <input (keydown)="preventNegatives($event)" placeholder="1" type="number" class="form-control" name="pID" id="pID" required>
+            <input (keydown)="preventNegatives($event)" placeholder="1" type="number" class="form-control" name="pID" id="pID" min = "0"required>
             <small> Negative IDs not supported. Repeat IDs are allowed though. 🐖 </small><br>
         </section>
 
@@ -79,7 +78,7 @@
         </section>
 
         <!-- submit button -->
-        <button type="submit" class="btn btn-outline-danger" id = "submit" disabled >Submit</button>
+        <button type="button" (click)="onClickFormSubmit()" class="btn btn-outline-danger" id = "submit" disabled >Submit</button>
 
     </section>
 
