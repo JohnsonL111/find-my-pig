@@ -3,6 +3,7 @@ import * as L from 'leaflet';
 
 // need to add to make leaflet icons work
 import { icon, Marker } from 'leaflet';
+import { PigsService } from 'src/app/services/pigs.service';
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
 const shadowUrl = 'assets/marker-shadow.png';
@@ -29,7 +30,7 @@ export class ReportMapComponent implements AfterViewInit{
   payload: any;
   private map!: L.Map;
   
-  constructor() {
+  constructor(private _pigsService: PigsService) {
     this.pigs = [];
     this.payload = [];
   }
@@ -47,13 +48,43 @@ export class ReportMapComponent implements AfterViewInit{
       zoomOffset: -1
       }).addTo(this.map);
 
+      this.getPigsAndAddMarkers()
+  }
 
-      // adds two markers to the map (metrotown and SFU surrey)
-      L.marker([49.2276, -123.0076]).addTo(this.map)
-      .bindPopup("<b>Metrotown</b><br />cases reported.").openPopup();
+  // calls service method to update internal pig storage
+  getPigsAndAddMarkers() {
+    this._pigsService.getPigs()
+    .subscribe((data: any)=>{
+      this.payload = data;
+      this.extractData();
+      this.addMarkers();
+    });
+  }
 
-      L.marker([49.1867, -122.8490]).addTo(this.map)
-      .bindPopup("<b>SFU Surrey</b><br />cases reported.").openPopup();
+  // helper to extract the data from the payload
+  extractData() {
+    // populate pigs with just the pig data
+    this.payload.forEach((item: any) => { 
+      this.pigs.push(item.data)
+    });
+  }
+
+  // goes through the data and populates markers
+  addMarkers() {
+    this.pigs.forEach((pig) => {
+      let location = pig.location;
+      let longitude = Number(pig.longitude);
+      let latitude =  Number(pig.latitude);
+      console.log(`
+      In addMarkers method.
+      location = ${location}
+      longitude = ${longitude}
+      latitude = ${latitude}
+      `)
+
+      L.marker([longitude, latitude]).addTo(this.map)
+      .bindPopup(`<b>${location}</b><br />cases reported.`).openPopup();
+    })
   }
   
 }
