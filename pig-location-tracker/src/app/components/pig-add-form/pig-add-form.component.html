@@ -1,5 +1,11 @@
  <!-- [formGroup]="form"
 (ngSubmit)="onSubmit(form.value)" -->
+<section class = "flex-column justify-content-center p-3 border border-danger border-thick text-center">
+    <button (click) = "goHome()" class = "btn btn-outline-danger align-self-center"> 
+        Nevermind, it wasn't a pig (go back to main screen)
+    </button>
+</section>
+
 <form id = "pig-info-form" name="pig-info-form" class = "flex-even m-3 text-center" (change) = "validateForm()">
     <h3 class = "text-bg-danger text-dark p-1"> 🐖Pig Report Form </h3>
     <p> 🐖 Can I submit: {{submitStatus}} </p>
@@ -50,7 +56,7 @@
             <label for="location" class = "m-2">Location*</label>
             <input type="text" class="form-control" name="location" id="location" required>
         </section>
-        
+
         <section class = "form-group p-3">
             <label for="longitude" class = "m-2">Longitude*</label>
             <input type="number" class="form-control" name="longitude" id="longitude" required>

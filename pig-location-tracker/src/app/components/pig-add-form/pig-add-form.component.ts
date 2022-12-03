@@ -40,6 +40,11 @@ export class PigAddFormComponent implements OnInit{
     return true;
   }
 
+  // just redirects the user back to the home screen.
+  goHome() {
+    this._router.navigateByUrl("");
+  }
+
   // validates the form input.
   validateForm() {
     let submitButton = document.getElementById("submit");
