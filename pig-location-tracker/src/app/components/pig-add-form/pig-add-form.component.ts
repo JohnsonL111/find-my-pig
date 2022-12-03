@@ -17,6 +17,7 @@ export class PigAddFormComponent implements OnInit{
     this.submitStatus = "no";
     // if the user accesses this URL not through the "add button" on the main page then redirect them back.
     if (this._router.getCurrentNavigation()?.extras.state?.['legalNav'] == null) _router.navigateByUrl("")
+    console.log(this.createKey());
   }
 
   ngOnInit(): void {
@@ -80,6 +81,37 @@ export class PigAddFormComponent implements OnInit{
 
   // adds the pig report to the server and navigates back to the main screen
   onClickFormSubmit() {
+    // At this point it is confirmed that the pig is valid.
+    let key = this.createKey();
+    let data = this.createData();
+    /*
+    this._http.post('https://272.selfip.net/apps/IebSX7E91f/collections/pigs/documents/',
+    {"key": key, 
+    "data": data}
+    ).subscribe((data:any)=>{
+      console.log(data)
+    })*/
+
+    // reroute back to the main 
     this._router.navigateByUrl("")
+  }
+
+  // our key is the concatenation of the date and time (guarenteed to be unique)
+  createKey(): string {
+    let date = document.getElementById("date");
+    let time = document.getElementById("time")
+
+    let dateNum = (<HTMLInputElement>date)?.value.replaceAll("/", ""); // remove all slashes in the date
+    let timeNum = (<HTMLInputElement>time)?.value.replaceAll(":", "") // remove the colon in the time
+
+    let key = dateNum + timeNum;
+    console.log(`our key is ${dateNum} + ${timeNum}`);
+  
+    return key;
+  }
+
+  // gathers then creates an object representing the data part to be posted to the server.
+  createData(): Object{
+    return {};
   }
 }
