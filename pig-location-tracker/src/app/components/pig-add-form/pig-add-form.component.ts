@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./pig-add-form.component.css']
 })
 export class PigAddFormComponent implements OnInit{
-
+  submitStatus: string;
   // router service and HttpClient is injected here
   constructor(private _router: Router, private _http: HttpClient) {
     // add the disabled attribute back to the submit button
     document.getElementById("submit")?.setAttribute("disabled", "disabled");
-
+    this.submitStatus = "no";
     // if the user accesses this URL not through the "add button" on the main page then redirect them back.
     if (this._router.getCurrentNavigation()?.extras.state?.['legalNav'] == null) _router.navigateByUrl("")
   }
@@ -38,13 +38,17 @@ export class PigAddFormComponent implements OnInit{
     return true;
   }
 
+  // validates the form input.
   validateForm() {
     let submitButton = document.getElementById("submit");
     console.log("form has been changed")
-    if (this.checkRequiredFields()) {
+    if (this.checkProperPhone() && this.checkRequiredFields()) {
       submitButton?.removeAttribute("disabled");
+      this.submitStatus = "yes"
     } else {
+      if (this.checkRequiredFields()) alert("All fields are filled, but phone number is invalid");
       document.getElementById("submit")?.setAttribute("disabled", "disabled");
+      this.submitStatus = "no";
     }
   }
 
@@ -69,7 +73,9 @@ export class PigAddFormComponent implements OnInit{
 
   // checks if the phone number returned matches the regex.
   checkProperPhone() {
-    return true
+    const re = new RegExp("[0-9]{3}-[0-9]{3}-[0-9]{4}");
+    let phoneNum = <HTMLInputElement>document.getElementById("person-number");
+    return re.test(phoneNum?.value) ? true : false;
   }
 
   // adds the pig report to the server and navigates back to the main screen
