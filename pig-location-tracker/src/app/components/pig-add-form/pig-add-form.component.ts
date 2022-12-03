@@ -26,6 +26,46 @@ export class PigAddFormComponent implements OnInit{
     (<HTMLInputElement>document.getElementById("date")).value = new Date().toLocaleDateString();
     (<HTMLInputElement>document.getElementById("time")).value = new Date().toLocaleTimeString(
       [], {hour: '2-digit', minute: '2-digit'});
+
+    this.changeLocationFields();
+  }
+
+  // toggles the "select own component" on and off
+  toggleAddOwnLocation(e: Event) {
+    e.preventDefault();
+    this.changeLocationFields();
+  }
+
+  // for if the user wants to add their own input.
+  changeLocationFields() {
+    let toggleOwnLocation = <HTMLButtonElement>document.getElementById("toggle-own-location");
+    let locationField = <HTMLInputElement>document.getElementById("location");
+    let longitudeField = <HTMLInputElement>document.getElementById("longitude");
+    let latitudeField = <HTMLInputElement>document.getElementById("latitude");
+    let existingLocationsField = document.getElementById("select-existing-locations-section");
+    let locationHint = document.getElementById("location-hint");
+
+    console.log("in change locations method");
+    console.log(toggleOwnLocation.textContent);
+    switch(toggleOwnLocation.textContent) {
+      case "Add existing location":
+        toggleOwnLocation.textContent = "Add new location";
+        locationField.setAttribute("disabled", "");
+        longitudeField.setAttribute("disabled", "");
+        latitudeField.setAttribute("disabled", "");
+        existingLocationsField!.style.display = "block";
+        locationHint!.textContent = "🐖Select from the dropdown"
+
+        break;
+      case "Add new location":
+        toggleOwnLocation.textContent = "Add existing location";
+        locationField.removeAttribute("disabled");
+        longitudeField.removeAttribute("disabled");
+        latitudeField.removeAttribute("disabled");
+        existingLocationsField!.style.display = "none";
+        locationHint!.textContent = "🐖Add your own locations below";
+        break;
+    }
   }
 
   /**

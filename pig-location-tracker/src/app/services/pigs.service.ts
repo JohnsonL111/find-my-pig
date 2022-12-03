@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { pig } from '../pig';
 
 @Injectable({
   providedIn: 'root' // registers this service at the root module injector.

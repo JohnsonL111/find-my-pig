@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { pig } from 'src/app/pig';
 import { PigsService } from 'src/app/services/pigs.service';
 
 @Component({
