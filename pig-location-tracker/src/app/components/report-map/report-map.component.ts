@@ -28,11 +28,14 @@ export class ReportMapComponent implements AfterViewInit{
   title = 'pig-location-tracker';
   pigs: any[];
   payload: any;
+  // index signature enforcing consistent property types
+  locationCountDict: {[key: string]: number}; // enforces the number of occurences at a unique location.
   private map!: L.Map;
   
   constructor(private _pigsService: PigsService) {
     this.pigs = [];
     this.payload = [];
+    this.locationCountDict = {};
   }
 
   ngAfterViewInit(): void {
@@ -51,12 +54,13 @@ export class ReportMapComponent implements AfterViewInit{
       this.getPigsAndAddMarkers()
   }
 
-  // calls service method to update internal pig storage
+  // calls service method to update internal pig storage and also updates markers on the map.
   getPigsAndAddMarkers() {
     this._pigsService.getPigs()
     .subscribe((data: any)=>{
       this.payload = data;
       this.extractData();
+      this.countLocationMatches();
       this.addMarkers();
     });
   }
@@ -69,8 +73,8 @@ export class ReportMapComponent implements AfterViewInit{
     });
   }
 
-  // goes through the data and populates markers
-  addMarkers() {
+  // goes through the data and records the num of occurences for each location.
+  countLocationMatches() {
     this.pigs.forEach((pig) => {
       let location = pig.location;
       let longitude = Number(pig.longitude);
@@ -82,9 +86,22 @@ export class ReportMapComponent implements AfterViewInit{
       latitude = ${latitude}
       `)
 
-      L.marker([longitude, latitude]).addTo(this.map)
-      .bindPopup(`<b>${location}</b><br />cases reported.`).openPopup();
+      // update our longLatKey dict
+      let longLatKey: string = `${longitude} +${latitude}`
+      if (!( longLatKey in this.locationCountDict)) this.locationCountDict[longLatKey] = 1;
+      else this.locationCountDict[longLatKey] += 1;
     })
   }
-  
+
+  addMarkers() {
+    this.pigs.forEach((pig) => {
+      let location = pig.location;
+      let longitude = Number(pig.longitude);
+      let latitude =  Number(pig.latitude);
+
+      let longLatKey: string = `${longitude} +${latitude}`
+      L.marker([longitude, latitude]).addTo(this.map)
+      .bindPopup(`<b>${location}</b><br/> ${this.locationCountDict[longLatKey]} case(s) reported.`).openPopup()
+    });
+  }
 }

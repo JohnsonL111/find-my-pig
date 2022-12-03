@@ -15,7 +15,6 @@ export class PigsService {
     this.pigs = []
   }
 
-  // populates the internal list in the service through the server
   getPigs() {
     console.log("get pig called")
     return this._http.get<Object>('https://272.selfip.net/apps/IebSX7E91f/collections/pigs/documents/');
