@@ -20,6 +20,10 @@ export class PigTableComponent implements OnInit {
 
   // log the pigs from the service
   ngOnInit(): void {
+    this.getPigs();
+  }
+
+  getPigs() {
     this._pigsService.getPigs()
     .subscribe((data: any)=>{
       this.payload = data;
@@ -41,11 +45,43 @@ export class PigTableComponent implements OnInit {
     this._router.navigateByUrl("add", { state: {legalNav : "true"}});
   }
 
+  onClickDelete() {
+    if (this.promptPassword()) {
+      let idx;
+      do {
+        idx = prompt("Please enter the pigs index");
+      } while (this.isInvalidIdx(idx));
+
+      let idxNum = Number(idx);
+      this._pigsService.deletePig(this.payload[idxNum].key).subscribe((data: any) => {
+        location.reload();
+      })
+    } 
+  }
+
   onClickUpdate() { 
-    let idx;
-    do {
-      idx = prompt("Please enter the pigs index");
-    } while (this.isInvalidIdx(idx));
+    if (this.promptPassword()) {
+      let idx;
+      do {
+        idx = prompt("Please enter the pigs index");
+      } while (this.isInvalidIdx(idx));
+
+      let idxNum = Number(idx);
+      this.pigs[idxNum].retrieved = "RETRIEVED"
+      this._pigsService.putPig(this.payload[idxNum].key, this.pigs[idxNum]).subscribe((data: any) => {
+      })
+    } 
+  }
+
+  // used for if the user wants to update the status or delete a pig
+  promptPassword(): boolean {
+    let pw = prompt("Please enter the password");
+    if (pw == "OINK!!") {
+      return true;
+    } else {
+      alert("incorrect password");
+      return false;
+   }
   }
 
   isInvalidIdx(idx: string | null): boolean {

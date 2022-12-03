@@ -27,4 +27,14 @@ export class PigsService {
     "data": data}
     )
   }
+
+  putPig(key: string, data: Object) {
+    return this._http.put('https://272.selfip.net/apps/IebSX7E91f/collections/pigs/documents/' + key
+    , {"key": key, "data": data});
+  }
+
+  deletePig(key: string) {
+    console.log("deleting pig", key);
+    return this._http.delete('https://272.selfip.net/apps/IebSX7E91f/collections/pigs/documents/' + key);
+  }
 }
