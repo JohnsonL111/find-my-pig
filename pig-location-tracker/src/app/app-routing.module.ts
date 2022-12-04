@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { PigAddFormComponent } from './components/pig-add-form/pig-add-form.component';
 import { PigLandingPageComponent } from './components/pig-landing-page/pig-landing-page.component';
 import { PigTableComponent } from './components/pig-table/pig-table.component';
+import { PigViewComponent } from './components/pig-view/pig-view.component';
 import { ReportMapComponent } from './components/report-map/report-map.component';
 
 
@@ -11,7 +12,7 @@ import { ReportMapComponent } from './components/report-map/report-map.component
 const routes: Routes = [
   { path: '', component: PigLandingPageComponent},
   { path: 'add', component: PigAddFormComponent },
-  //{ path: 'edit/:name', component: PersonEditFormComponent }
+  { path: 'info/:key', component: PigViewComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,83 @@
+<form id = "pig-info-form" name="pig-info-form" class = "flex-even m-3 text-center">
+    <h3 class = "text-bg-danger text-dark p-1"> 🐖Pig View Form </h3>
+    <!-- box around the entire form-->
+    <section class = "p-5 border border-danger border-thick">
+        <!-- Reporting Person Details Section-->
+        <h6 class = "text-bg-danger p-1"> Section 1: Reporting Person Details </h6>
+        <section class = "form-group p-3">
+            <label for="person-name" class = "m-2">Name*</label>
+            <input placeholder="Bob" type="text" class="form-control" name="person-name" id="person-name">
+        </section>
+        <section class = "form-group p-3">
+            <label for="person-number" class = "m-2">Phone Number*</label>
+            <!-- Validated on submission -->
+            <input placeholder="778-782-6930" type="tel" class="form-control" name="person-number" id="person-number" >
+            <small>Format (example number): 778-782-6930</small><br>
+            <small>You will not be able to submit if it does not follow the above format. You have been warned.🐖</small><br>
+        </section>
+
+        <!-- Pig Info Details Section-->
+        <h6 class = "text-bg-danger p-1"> Section 2: Pig Details </h6>
+        <section class = "form-group p-3">
+            <label for="pig-breed" class = "m-2"> Breed* </label><br>
+            <select name="pig-breed" id="pig-breed"> 
+                <option selected="selected" value="oshawott">oshawott</option>
+                <option value="tepig">tepig</option>
+                <option value="snivy">snivy</option>
+                <option value="uknown">unknown</option>
+            </select>
+        </section>
+        <section class = "form-group p-3">
+            <label for="pID" class = "m-2">pig ID (pID)*</label>
+            <input type="number" class="form-control" name="pID" id="pID" min = "0" >
+            <small> Negative IDs not supported. Repeat IDs are allowed though. 🐖 </small><br>
+        </section>
+
+        <!-- Location Info Details Section-->
+        <h6 class = "text-bg-danger p-1"> Section 3: Location </h6>
+        <section class = "form-group p-3">
+            <label for="location" class = "m-2">Location*</label>
+            <input type="text" class="form-control" name="location" id="location" >
+        </section>
+
+        <section class = "form-group p-3">
+            <label for="longitude" class = "m-2">Longitude*</label>
+            <input type="number" class="form-control" name="longitude" id="longitude" >
+        </section>
+        <section class = "form-group p-3">
+            <label for="latitude" class = "m-2">Latitude*</label>
+            <input type="number" class="form-control" name="latitude" id="latitude" >
+        </section>
+
+        <!-- Time Reported Details Section-->
+        <h6 class = "text-bg-danger p-1"> Section 4: Report Time </h6>
+        <section class = "form-group p-3">
+            <label for="date" class = "m-2">Date</label>
+            <input type="text" class="form-control" name="date" id="date" >
+        </section>
+        <section class = "form-group p-3">
+            <label for="time" class = "m-2">Time</label>
+            <input type="text" class="form-control" name="time" id="time" >
+        </section>
+
+        <!-- Extra Notes Section-->
+        <h6 class = "text-bg-danger p-1">Section 5 (Optional): Extra Notes </h6>
+        <section class = "form-group p-3">
+            <label for="extra-notes" class = "m-2">Notes</label>
+            <textarea class="form-control" rows="4" cols="50" name="extra-notes" id="extra-notes" ></textarea>
+        </section>
+
+        <section class = "form-group p-3">
+            <label for="retrieved" class = "m-2"> Retrieve Status </label>
+            <input type="text" class="form-control" name="retrieved" id="retrieved" >
+        </section>
+
+        <section class = "flex-column justify-content-center p-3 border border-danger border-thick text-center">
+            <button (click) = "goHome()" class = "btn btn-outline-danger align-self-center"> 
+                🐖 Done Viewing
+            </button>
+        </section>
+
+    </section>
+
+</form>

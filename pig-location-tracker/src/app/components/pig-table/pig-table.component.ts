@@ -80,6 +80,20 @@ export class PigTableComponent implements OnInit {
     } 
   }
 
+  // acquire the index of the pig to view then redirect the user.
+  onClickInfo() {
+    let idx;
+    do {
+      idx = prompt("Please enter the pigs index");
+    } while (this.isInvalidIdx(idx));
+
+    // terminate if user clicks cancel (strict null return) or no input
+    // without this guard it will treat the empty return as idx = 0.
+    if (idx === null || idx === "") return;
+    let key = this.payload[idx].key;
+    this._router.navigateByUrl("/info/" + key);
+  }
+
   // used for if the user wants to update the status or delete a pig
   promptPassword(): boolean {
     let pw = prompt("Please enter the password");
