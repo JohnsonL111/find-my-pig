@@ -10,12 +10,10 @@ export class PigsService {
   constructor(private _http: HttpClient) { 
     // creats the pigs collection if not exist then updates the internal list
     // services cannot have ngOnInit lifecycle hook so do this in the constructor
-    console.log("pig service constructor");
     this.pigs = []
   }
 
   getPigs() {
-    console.log("get pig called")
     return this._http.get<Object>('https://272.selfip.net/apps/IebSX7E91f/collections/pigs/documents/');
   }
 
@@ -32,7 +30,6 @@ export class PigsService {
   }
 
   deletePig(key: string) {
-    console.log("deleting pig", key);
     return this._http.delete('https://272.selfip.net/apps/IebSX7E91f/collections/pigs/documents/' + key);
   }
 }
