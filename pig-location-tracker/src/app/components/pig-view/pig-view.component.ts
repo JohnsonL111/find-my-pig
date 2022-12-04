@@ -27,10 +27,6 @@ export class PigViewComponent implements OnInit {
 
   populateFields() {
     this.payload.forEach((keyData: any) => {
-      console.log(`
-      keyData.key = ${keyData.key}
-      this.key = ${this.key}
-      `)
       if (keyData.key == this.key) {
         this.data = keyData.data; // is an object.
       }

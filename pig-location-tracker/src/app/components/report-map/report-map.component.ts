@@ -79,12 +79,6 @@ export class ReportMapComponent implements AfterViewInit{
       let location = pig.location;
       let longitude = Number(pig.longitude);
       let latitude =  Number(pig.latitude);
-      console.log(`
-      In addMarkers method.
-      location = ${location}
-      longitude = ${longitude}
-      latitude = ${latitude}
-      `)
 
       // update our longLatKey dict
       let longLatKey: string = `${longitude} +${latitude}`

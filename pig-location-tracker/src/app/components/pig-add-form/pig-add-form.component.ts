@@ -41,14 +41,6 @@ export class PigAddFormComponent implements OnInit{
       let location = pig.location;
       let longitude = pig.longitude;
       let latitude = pig.latitude;
-
-      console.log(`
-      In update select dropdown method: 
-      location = ${location}
-      longitude = ${longitude}
-      latitude = ${latitude}
-      `)
-
       // create node, add values and add to dropdown
       const option = document.createElement("option");
       option.value = `${index}`;
@@ -74,7 +66,6 @@ export class PigAddFormComponent implements OnInit{
   }
 
   populateLocationData() {
-    console.log("populating data");
     let sel = <HTMLSelectElement>document.querySelector("#location-options");
 
     // populate the location data with the index
