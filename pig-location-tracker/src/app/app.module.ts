@@ -23,8 +23,12 @@ import { PigViewComponent } from './components/pig-view/pig-view.component';
   ],
   imports: [
     BrowserModule, // for interacting with DOM
-    AppRoutingModule, // for angular routing
-    HttpClientModule, // for using http as the communication method to consume APIs 
+
+    // inject in constructor with private _router: Router | ActivatedRoute.
+    AppRoutingModule, // for angular routing. Inject things
+
+    // inject in constructor with private _httpClient: HttpClient
+    HttpClientModule, // for using http as the communication method to consume APIs. 
   ],
   providers: [], // likely empty, since I'm registering all services via providedIn
   bootstrap: [AppComponent]
