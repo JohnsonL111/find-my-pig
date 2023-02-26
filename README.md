@@ -7,7 +7,7 @@ CMPT 272 Final Project
 ```bash
 > # start from any base directory
 > git clone git@github.com:JohnsonL111/pig-location-tracker.git
-> cd pig-location-tracker/pig-location-tracker (yup, twice 🙃)
+> cd pig-location-tracker/pig-location-tracker # (yup, twice 🙃)
 > npm install # downloads dependencies
 > ng serve # runs dev server on http://localhost:4200/ in your default browser
 ```
@@ -29,7 +29,7 @@ CMPT 272 Final Project
 ## Functionality
 > Password for delete and update are `Oink!!` (case sensitive)
 
-- Supports CRUD operations for missing pig report
+- Supports CRUD operations for missing pig reports
 1. Add a missing pig report
 2. Edit a missing pig report
 3. Delete a missing pig report
