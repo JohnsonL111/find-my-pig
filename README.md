@@ -27,7 +27,7 @@ CMPT 272 Final Project
 **Production**: https://pig-reporting-application.netlify.app/ 
 
 ## Functionality
-> Password for delete and update are `Oink!!` (case sensitive)
+> Password for delete and update are `OINK!!` (case sensitive)
 
 - Supports CRUD operations for missing pig reports
 1. Add a missing pig report
