@@ -29,7 +29,7 @@ CMPT 272 Final Project
 ## Functionality
 > Password for delete and update are `Oink!!` (case sensitive)
 
-- Supports CRUD operations of Pigs
+- Supports CRUD operations for missing pig report
 1. Add a missing pig report
 2. Edit a missing pig report
 3. Delete a missing pig report
