@@ -1,4 +1,4 @@
-CMPT 272 Final Project
+WEB DEV 1 Final Project
 
 > Help your buddy Farmer Hogget find his missing pigs!
 ## Deployment
